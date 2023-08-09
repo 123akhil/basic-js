@@ -99,7 +99,7 @@ nums.concat(nums1, arr);
 
 //SLice-- to acces certain part of array
 // negative number is indexing from end of array if it is -1 than the last element
-console.log(arr);
+// console.log(arr);
 arr.slice(0,2);
 // console.log(newArr);
 arr.slice(-1);
@@ -108,8 +108,9 @@ arr.slice(-1);
 // Splice-- Remove elemts from an array & can insert too if neccesary at their place and return removed arrays.
 
 //not innetiating to an array so it will make changes to the same array and return the array by removing 2 elements from starting from index 1 and adding papaya to it.
-arr.splice(1,2, "papaya")
-
+let prr = ["apple", "banana", "mango","spinach", "cheery"];
+console.log(prr.splice(1,2, "papaya"));
+console.log(prr);
 //Fill- fill every elemnt od the array with a given value
 const dummy=[1,2,3,4,5]
 dummy.fill(0);
