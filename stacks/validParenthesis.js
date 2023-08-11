@@ -39,8 +39,8 @@ function isValid(s) {
     return stack.length === 0;
   }
   
-  const string1 = "([{})";
-  console.log(isValid(string1));
+  const string2 = "([{})";
+  console.log(isValid(string2));
   
   // Time Complexity = O(n)
   // Space Complexity = O(n)
