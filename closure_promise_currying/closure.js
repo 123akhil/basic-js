@@ -20,7 +20,7 @@ function findSlow(i) {
   console.log(a[i]);
 }
 
-// console.time("6");
+// console.time("6"); it was use to major time
 // findSlow(6);
 // console.timeEnd("6");
 // console.time("12");
@@ -100,25 +100,115 @@ let c = counter();
 //MODULE FUNCTION
 // Define a module using an IIFE (Immediately Invoked Function Expression)
 const MyModule = (function () {
-    // Private variables and functions
-    let privateVar = 'I am private';
-  
-    function privateFunction() {
-      console.log(privateVar);
-    }
-  
-    // Public interface (exposed to the outside)
-    return {
-      publicVar: 'I am public',
-      publicFunction: function () {
-        console.log('This is a public function');
-        privateFunction(); // You can call private functions from public functions
-      },
-    };
-  })();
-  
-  // Using the module
+  // Private variables and functions
+  let privateVar = "I am private";
+
+  function privateFunction() {
+    console.log(privateVar);
+  }
+
+  // Public interface (exposed to the outside)
+  return {
+    publicVar: "I am public",
+    publicFunction: function () {
+      console.log("This is a public function");
+      privateFunction(); // You can call private functions from public functions
+    },
+  };
+})();
+
+// Using the module
 //   console.log(MyModule.publicVar); // Accessing public variable
 //   MyModule.publicFunction(); // Calling public function
-  // You can't directly access privateVar or privateFunction from outside the module
-  
+// You can't directly access privateVar or privateFunction from outside the module
+
+// Closures in Javascript
+// Ques 7: Make this run only once
+//this Implementation is just for thr start you and if the interviewer ask than there is one pollyfill for once in LODASH
+let view;
+function likeTheVideo() {
+  let called = 0;
+  return function () {
+    if (called > 0) {
+      console.log("Already Subcribed to Roadside Coder");
+    } else {
+      view = "Roadside Coder";
+      console.log("Subscribe to", view);
+      called++;
+    }
+  };
+}
+let isSubscribed = likeTheVideo();
+
+// isSubscribed();
+// isSubscribed();
+// isSubscribed();
+
+//Once pollyfill
+//to ensure that the provided function (func) is executed only once, caching the result if necessary and preventing further executions.
+const person = {
+  name: "John",
+  greet: function () {
+    console.log(`Hello, my name is ${this.name}`);
+  },
+};
+
+function once(func, context) {
+  //included an optional context parameter that allows you to explicitly set the this value for the func function when it's executed.
+  let ran;
+  return function () {
+    if (func) {
+      ran = func.apply(context || this, arguments);
+      func = null;
+    }
+    return ran;
+  };
+}
+const hello = once((a, b) => console.log("hello", a, b));
+// hello(1, 2);
+// hello(1, 2);
+// hello(1, 2);
+
+const sayHello = once(person.greet, person);
+
+// sayHello();
+// sayHello();
+// sayHello();
+
+
+
+// Question 3: Implement Caching/Memoize Function
+//this is very time taking now use memoize Function
+function myMemoize(fn, context){
+    const ref = {};
+    return function(...args){
+        let argsCache = JSON.stringify(args);
+        if(!ref[argsCache]){
+            ref[argsCache] = fn.call(context || this, ...args)
+        }
+        return ref[argsCache];
+    }
+}
+
+
+const clumsysquare = (num1, num2) => {
+  for (let i = 1; i <= 100000000; i++) {}
+  return num1 * num2;
+};
+console.time("First slow call");
+console.log(clumsysquare(9467, 7649));
+console.timeEnd("First slow call");
+
+console.time("Second slow call");
+console.log(clumsysquare(9467, 7649));
+console.timeEnd("Second slow call");
+
+const memoizeClumsyProduct = myMemoize(clumsysquare);
+
+console.time("First call");
+console.log(memoizeClumsyProduct(9467, 7649));
+console.timeEnd("First call");
+
+console.time("Second call");
+console.log(memoizeClumsyProduct(9467, 7649));
+console.timeEnd("Second call");
