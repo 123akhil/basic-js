@@ -1,18 +1,18 @@
 /* it is the convension for naming css variable using "--" */
-:root{
-    --btn: #dbdbdb;
-    --btn-hover: #cacaca;
-    --item-bg: #f0f0f0;
-    --modal-bg: rgba(141, 141, 141, 0.541);
+:root {
+  --btn: #dbdbdb;
+  --btn-hover: #cacaca;
+  --item-bg: #f0f0f0;
+  --modal-bg: rgba(141, 141, 141, 0.541);
 }
-body{
-    font-family: sans-serif;
-    padding: 0 10;
+body {
+  font-family: sans-serif;
+  padding: 0 10;
 }
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header > button {
@@ -24,28 +24,29 @@ body{
 }
 
 .header > button:hover {
-    background-color: var(--btn-hover);
+  background-color: var(--btn-hover);
 }
 .employees {
-    display: flex;
+  display: flex;
 }
 
 .employees > div {
-    border: 1px solid black;
-    overflow-y: scroll;
-    height: 450px;
+  border: 1px solid black;
+  overflow-y: scroll;
+  height: 450px;
 }
-.employees__names{
-    width: 30%;
+.employees__names {
+  width: 30%;
 }
-.employees__single{
-    width: 70%;
+.employees__single {
+  width: 70%;
 }
 
-.employees__names,.employees__single{
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+.employees__names,
+.employees__single {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .employees__names--title,
 .employees__single--title {
